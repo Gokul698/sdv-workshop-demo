@@ -34,19 +34,17 @@ try:
             cv2.COLORMAP_JET
         )
 
-        if distance < 1.0:
+        cv2.putText(
+            depth_colormap,
+            f"Distance: {distance:.2f} m",
+            (20,40),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            1,
+            (255,255,255),
+            2
+        )
 
-            cv2.putText(
-                depth_colormap,
-                "WARNING: OBSTACLE",
-                (20,80),
-                cv2.FONT_HERSHEY_SIMPLEX,
-                1,
-                (0,0,255),
-                3
-            )
-
-        cv2.imshow("Obstacle Detection", depth_colormap)
+        cv2.imshow("Distance Measurement", depth_colormap)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break

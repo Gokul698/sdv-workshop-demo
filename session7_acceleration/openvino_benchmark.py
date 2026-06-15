@@ -1,0 +1,1 @@
+from openvino.runtime import Core

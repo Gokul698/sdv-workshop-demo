@@ -1,9 +1,6 @@
-from ultralytics import YOLO
 import pyrealsense2 as rs
 import numpy as np
 import cv2
-
-model = YOLO("yolov8n.pt")
 
 pipeline = rs.pipeline()
 config = rs.config()
@@ -19,22 +16,16 @@ config.enable_stream(
 pipeline.start(config)
 
 try:
-
     while True:
-
         frames = pipeline.wait_for_frames()
         color_frame = frames.get_color_frame()
 
         if not color_frame:
             continue
 
-        frame = np.asanyarray(color_frame.get_data())
+        image = np.asanyarray(color_frame.get_data())
 
-        results = model(frame)
-
-        annotated = results[0].plot()
-
-        cv2.imshow("YOLO D455", annotated)
+        cv2.imshow("D455 RGB Stream", image)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break

@@ -8,7 +8,7 @@ while True:
     if not ret:
         break
 
-    cv2.imshow("USB Camera", frame)
+    cv2.imshow("Camera", frame)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
